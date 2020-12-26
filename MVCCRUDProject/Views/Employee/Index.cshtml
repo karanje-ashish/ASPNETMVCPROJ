@@ -1,0 +1,39 @@
+﻿@model IEnumerable<MVCCRUDProject.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Employee Details</h2>
+<hr/>
+
+<button class="">@Html.ActionLink("Add Employees", "AddEmployees","Employee")</button>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(m => m.EmployeeName)</th>
+            <th>@Html.DisplayNameFor(m => m.Code)</th>
+            <th>@Html.DisplayNameFor(m => m.DOJ)</th>
+            <th>@Html.DisplayNameFor(m => m.DepartmentId)</th>
+        </tr>
+    </thead>
+    
+
+    <tbody>
+    @foreach (var employees in Model)
+    {
+        <tr>
+            <td>@employees.EmployeeName</td>
+            <td>@employees.Code</td>
+            <td>@(employees.DOJ.HasValue ? employees.DOJ.Value.ToString("dd-MMM-yyyy") : string.Empty) </td>
+            <td>@employees.Department.DepartmentName</td>
+            <td>@Html.ActionLink("Edit", "Edit", new { id = employees.EmployeeId })</td>
+            <td>@Html.ActionLink("Delete", "Delete", new { id = employees.EmployeeId })</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
